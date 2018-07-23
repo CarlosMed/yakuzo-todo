@@ -1,0 +1,14 @@
+footer {
+  margin-bottom: 20px !important;
+}
+
+footer li {
+  display: flex;
+  justify-content: center;
+}
+
+i.add {
+  background: #fa7b66;
+  background: linear-gradient(167deg, #fa7b66 0%, #f94d73 100%) !important;
+  border-radius: 100%;
+}

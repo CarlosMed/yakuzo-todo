@@ -1,0 +1,32 @@
+#addTodo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 95%;
+}
+
+#addTodo header {
+  width: 70vw;
+  margin: 20px 0 !important;
+}
+
+#addTodo h2 {
+  margin: 80px 0;
+}
+
+form {
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+input[type=text] {
+  border-bottom-color: #c8c8c8 !important;
+}
+
+.btn {
+  background: #fa7b66;
+  background: linear-gradient(167deg, #fa7b66 0%, #f94d73 100%) !important;
+}
