@@ -12,6 +12,7 @@ section h2 {
 section li {
   margin-bottom: 15px;
   max-width: 340px;
+  cursor: pointer;
 }
 
 section li:last-child {
