@@ -58,6 +58,7 @@ class AddTodo extends Component {
             value={input}
             placeholder="Add todo ex. Get milk"
             onChange={this.handleChange}
+            required
           />
           <button
             className="btn btn-large waves-effect waves-light"

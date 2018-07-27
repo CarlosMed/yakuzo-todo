@@ -10,14 +10,13 @@ export const TodoList = props => {
       <h2>
         <b>Today</b>
       </h2>
-      {message && <p>{message}</p>}
-      <ul>
-        {todos.length === 0 ? (
-          <Loader />
-        ) : (
-          todos.map(todo => <Todo todo={todo} key={todo.id} />)
-        )}
-      </ul>
+      {todos.length === 0 ? (
+        <p className="grey-text">{message}</p>
+      ) : (
+        <ul>
+          {todos.map(todo => <Todo todo={todo} key={todo.id} />)}
+        </ul>
+      )}
     </div>
   );
 };

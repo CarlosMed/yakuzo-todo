@@ -12,37 +12,24 @@ class Home extends Component {
 
     this.state = {
       todos: [],
-      message: null
+      message: 'You have no todos. Lets add one or some.'
     };
   }
 
-  componentDidMount() {
+  componentDidMount(e) {
     db.collection('todos').onSnapshot(querySnapshot => {
       const snapshotChanges = querySnapshot.docChanges();
+
       // Loops through the querySanpshot
       snapshotChanges.forEach(changes => {
         const { type } = changes;
-        console.log(changes);
 
         if (type === 'added') {
-          // Grabs the initial todo - with mutation
-          const todos = this.state.todos;
-          const id = changes.doc.id;
-          const { completed, item } = changes.doc.data();
-
-          // Pushes the deconstructed data ex. id, data, item
-          todos.push({
-            id,
-            completed,
-            item
-          });
-
-          // Sets the state for todos
-          this.setState({
-            todos
-          });
+          this.getDoc(changes);
         } else if (type === 'removed') {
           const deletedDocId = changes.doc.id;
+
+          return this.deleteSelected(deletedDocId);
         }
       });
     });
@@ -54,6 +41,37 @@ class Home extends Component {
         message: 'You have no todos try adding some.'
       });
     }
+  }
+
+  getDoc(changes) {
+    // Grabs the initial todo - with mutation
+    const todos = this.state.todos;
+    const id = changes.doc.id;
+    const { completed, item } = changes.doc.data();
+
+    // Pushes the deconstructed data ex. id, data, item
+    todos.push({
+      id,
+      completed,
+      item
+    });
+
+    // Sets the state for todos
+    this.setState({
+      todos
+    });
+  }
+
+  deleteSelected(docId) {
+    const { todos } = this.state;
+
+    // convert todos from into a new filtered array
+    const filteredTodos = todos.filter(element => docId !== element.id && element);
+
+    // updates todos state with filtered array - with mutation
+    this.setState({
+      todos: filteredTodos
+    });
   }
 
   render() {
