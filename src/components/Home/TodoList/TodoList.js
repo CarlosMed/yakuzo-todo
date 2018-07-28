@@ -1,12 +1,12 @@
 import React from 'react';
-import { Loader } from './Loader';
+// import { Loader } from './Loader';
 import { Todo } from './Todo';
 
 export const TodoList = props => {
   const { todos, message } = props;
 
   return (
-    <div>
+    <div className="container">
       <h2>
         <b>Today</b>
       </h2>

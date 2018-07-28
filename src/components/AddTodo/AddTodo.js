@@ -28,19 +28,18 @@ class AddTodo extends Component {
     e.preventDefault();
 
     const { input } = this.state;
-    const defaultTemplate  = {
+
+    const defaultTemplate = {
       completed: false,
       item: input
-    }
+    };
 
-    db.collection('todos')
-    .add(defaultTemplate)
-    .then(() => this.setState({ input: '' }));
+    db.collection('todos').add(defaultTemplate)
+      .then( () => this.setState({input: '' }));
   }
 
-
   render() {
-    const { input } = this.state.input;
+    const { input } = this.state;
 
     return (
       <section className="container" id="addTodo">
@@ -52,17 +51,18 @@ class AddTodo extends Component {
             <b>Add New Task</b>
           </h2>
         </header>
-        <form className="center-align" onSubmit={this.handleSubmit}>
+        <form className="center-align">
           <input
             type="text"
-            value={input}
             placeholder="Add todo ex. Get milk"
+            value={input}
             onChange={this.handleChange}
-            required
+            autoFocus
           />
           <button
             className="btn btn-large waves-effect waves-light"
-            type="submit">
+            onClick={this.handleSubmit}
+            >
             <i className="material-icons left">add</i> Add Now
           </button>
         </form>

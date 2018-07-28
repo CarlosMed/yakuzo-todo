@@ -17,18 +17,22 @@ class Home extends Component {
   }
 
   componentDidMount(e) {
+    // Component is mounted check. Read the comment on componentWillUnmount
+    this._isMounted = true;
+
     db.collection('todos').onSnapshot(querySnapshot => {
+      // Grab querySnapshot when the document changes
       const snapshotChanges = querySnapshot.docChanges();
 
       // Loops through the querySanpshot
       snapshotChanges.forEach(changes => {
         const { type } = changes;
 
-        if (type === 'added') {
+        // Checks to see if _isMounted is set to true before fetching or deleting
+        if (this._isMounted && type === 'added') {
           this.getDoc(changes);
-        } else if (type === 'removed') {
+        } else if (this._isMounted && type === 'removed') {
           const deletedDocId = changes.doc.id;
-
           return this.deleteSelected(deletedDocId);
         }
       });
@@ -36,11 +40,12 @@ class Home extends Component {
   }
 
   componentWillUnmount() {
-    if (this.state.todos.length === 0) {
-      this.setState({
-        message: 'You have no todos try adding some.'
-      });
-    }
+    /* When the component unMounts it sets this._isMounted to false to
+     * reduce the possability of calling setState on an unMounted
+     * compnent. Please reveiew this issue here:
+     * https://youtu.be/8BNdxFzMeVg
+    */
+    this._isMounted = false;
   }
 
   getDoc(changes) {
@@ -66,7 +71,9 @@ class Home extends Component {
     const { todos } = this.state;
 
     // convert todos from into a new filtered array
-    const filteredTodos = todos.filter(element => docId !== element.id && element);
+    const filteredTodos = todos.filter(
+      element => docId !== element.id && element
+    );
 
     // updates todos state with filtered array - with mutation
     this.setState({
@@ -77,7 +84,7 @@ class Home extends Component {
   render() {
     const { todos, message } = this.state;
     return (
-      <section className="container">
+      <section>
         <Header amount={todos.length} />
         <TodoList todos={todos} message={message} />
         <Footer />

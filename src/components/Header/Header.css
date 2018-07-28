@@ -13,6 +13,10 @@ header svg {
   width: 370px;
 }
 
+header, p h3 {
+  margin-left: 20px;
+}
+
 header p {
   width: 150px;
 }
