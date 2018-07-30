@@ -9,17 +9,28 @@ section h2 {
   margin-bottom: 30px;
 }
 
-section li {
+section div li {
   margin-bottom: 15px;
-  max-width: 340px;
-  cursor: pointer;
 }
 
 section li:last-child {
   margin: 0;
 }
 
-li.crossed {
+li span {
+  max-width: 340px;
+}
+
+.material-icons {
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.material-icons:first-child {
+  margin-left: 0;
+}
+
+span.crossed {
   position: relative;
   -webkit-text-decoration: line-through #fa7b66;
   text-decoration: line-through #fa7b66;

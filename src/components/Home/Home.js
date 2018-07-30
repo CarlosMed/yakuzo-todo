@@ -34,6 +34,9 @@ class Home extends Component {
         } else if (this._isMounted && type === 'removed') {
           const deletedDocId = changes.doc.id;
           return this.deleteSelected(deletedDocId);
+        } else {
+          // this.getDoc( changes );
+          console.log(changes);
         }
       });
     });
