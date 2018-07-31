@@ -21,7 +21,7 @@ export const Todo = props => {
 
   return (
     <li className="row" data-id={id}>
-      <span className={completed ? 'col s7 row crossed' : 'col s7 row'}>
+      <span className={completed ? 'col s7 row crossed grey-text text-lighten-1' : 'col s7 row'}>
         {item}
       </span>
       <div className="col s5 center-align">

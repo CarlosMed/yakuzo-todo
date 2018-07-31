@@ -34,9 +34,8 @@ class Home extends Component {
         } else if (this._isMounted && type === 'removed') {
           const deletedDocId = changes.doc.id;
           return this.deleteSelected(deletedDocId);
-        } else {
-          // this.getDoc( changes );
-          console.log(changes);
+        } else if (this._isMounted && type === 'modified') {
+          this.updatedDoc(changes);
         }
       });
     });
@@ -81,6 +80,23 @@ class Home extends Component {
     // updates todos state with filtered array - with mutation
     this.setState({
       todos: filteredTodos
+    });
+  }
+
+  updatedDoc(docChange) {
+    const { todos } = this.state;
+    const { oldIndex } = docChange;
+    const { id } = docChange.doc;
+    const { completed, item } = docChange.doc.data();
+
+    todos.splice([oldIndex], 1, {
+      id,
+      completed,
+      item
+    });
+
+    this.setState({
+      todos
     });
   }
 
