@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Header } from '../Header/Header';
-import { TodoList } from './TodoList/TodoList';
+import { db } from '../../helpers/firebase';
 import { Footer } from '../Footer/Footer';
-import db from '../../helpers/db';
-
+import { Header } from '../Header/Header';
+import Login from '../Login/Login';
 import './Home.css';
 
 class Home extends Component {
@@ -24,7 +23,7 @@ class Home extends Component {
       // Grab querySnapshot when the document changes
       const snapshotChanges = querySnapshot.docChanges();
 
-      // Loops through the querySanpshot
+      // Loops through the querySnapshot
       snapshotChanges.forEach(changes => {
         const { type } = changes;
 
@@ -43,8 +42,8 @@ class Home extends Component {
 
   componentWillUnmount() {
     /* When the component unMounts it sets this._isMounted to false to
-     * reduce the possability of calling setState on an unMounted
-     * compnent. Please reveiew this issue here:
+     * reduce the possibility of calling setState on an unMounted
+     * component. Please review this issue here:
      * https://youtu.be/8BNdxFzMeVg
     */
     this._isMounted = false;
@@ -105,8 +104,9 @@ class Home extends Component {
     return (
       <section>
         <Header amount={todos.length} />
-        <TodoList todos={todos} message={message} />
+        {/* <TodoList todos={todos} message={message} /> */}
         <Footer />
+        <Login></Login>
       </section>
     );
   }

@@ -1,4 +1,5 @@
 import firebase from 'firebase/app';
+import 'firebase/auth';
 import 'firebase/firestore';
 
 // Obtain .env variable from the process
@@ -8,7 +9,7 @@ const {
   REACT_APP_DATABASE_URL,
   REACT_APP_PROJECT_ID,
   REACT_APP_STORAGE_BUCKET,
-  REACT_APP_MESSAGING_SENDER_ID
+  REACT_APP_MESSAGING_SENDER_ID,
 } = process.env;
 
 // Initialize Firebase
@@ -18,16 +19,11 @@ const config = {
   databaseURL: REACT_APP_DATABASE_URL,
   projectId: REACT_APP_PROJECT_ID,
   storageBucket: REACT_APP_STORAGE_BUCKET,
-  messagingSenderId: REACT_APP_MESSAGING_SENDER_ID
+  messagingSenderId: REACT_APP_MESSAGING_SENDER_ID,
 };
 
 firebase.initializeApp(config);
 
-const settings = {
-  timestampsInSnapshots: true
-};
-
-const db = firebase.firestore();
-db.settings(settings);
-
-export default db;
+export const db = firebase.firestore();
+export const auth = firebase.auth();
+export const googleProvider = new firebase.auth.GoogleAuthProvider();
