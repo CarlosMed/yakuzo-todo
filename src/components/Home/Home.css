@@ -24,6 +24,7 @@ li span {
 .material-icons {
   cursor: pointer;
   margin-left: 10px;
+  user-select: none;
 }
 
 .material-icons:first-child {
