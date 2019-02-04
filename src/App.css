@@ -3,3 +3,8 @@
   padding: 0;
   height: 100vh;
 }
+
+.btn {
+  background: #fa7b66;
+  background: linear-gradient(167deg, #fa7b66 0%, #f94d73 100%) !important;
+}
