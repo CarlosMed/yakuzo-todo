@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { db } from '../../helpers/firebase';
-import { Footer } from '../Footer/Footer';
-import { Header } from '../Header/Header';
-import Login from '../Login/Login';
+import Footer from './Footer/Footer';
+import Header from './Header/Header';
 import './Home.css';
+import TodoList from './TodoList/TodoList';
 
-class Home extends Component {
+class AuthHome extends Component {
   constructor(props) {
     super(props);
 
@@ -104,12 +104,11 @@ class Home extends Component {
     return (
       <section>
         <Header amount={todos.length} />
-        {/* <TodoList todos={todos} message={message} /> */}
+        <TodoList todos={todos} message={message} />
         <Footer />
-        <Login></Login>
       </section>
     );
   }
 }
 
-export default Home;
+export default AuthHome;

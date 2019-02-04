@@ -1,8 +1,8 @@
 import React from 'react';
+import './Header.css';
 import { Circles } from './svg';
-import './Header.css'
 
-export const Header = (props) => {
+const Header = (props) => {
   const { amount } = props;
   return (
     <header>
@@ -12,3 +12,5 @@ export const Header = (props) => {
     </header>
   );
 };
+
+export default Header;

@@ -1,8 +1,7 @@
 import React from 'react';
-// import { Loader } from './Loader';
 import { Todo } from './Todo';
 
-export const TodoList = props => {
+const TodoList = props => {
   const { todos, message } = props;
 
   return (
@@ -20,3 +19,5 @@ export const TodoList = props => {
     </div>
   );
 };
+
+export default TodoList;
