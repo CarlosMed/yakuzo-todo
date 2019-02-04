@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { db } from '../../helpers/firebase';
+import { db } from '../../utils/firebase';
 import './AddTodo.css';
 
 

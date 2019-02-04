@@ -25,8 +25,3 @@ form {
 input[type=text] {
   border-bottom-color: #c8c8c8 !important;
 }
-
-.btn {
-  background: #fa7b66;
-  background: linear-gradient(167deg, #fa7b66 0%, #f94d73 100%) !important;
-}
