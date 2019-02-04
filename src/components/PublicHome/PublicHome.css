@@ -1,0 +1,28 @@
+.auth {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.auth-container {
+  height: 350px;
+}
+
+button {
+  margin-bottom: 10px;
+}
+
+.signup > .row {
+  margin-bottom: 0;
+}
+
+.signup > button{
+  margin-bottom: 0;
+}
