@@ -1,5 +1,5 @@
 import React from 'react';
-import { db } from '../../../helpers/firebase';
+import { db } from '../../../utils/firebase';
 
 export const Todo = props => {
   const { item, completed, id } = props.todo;
