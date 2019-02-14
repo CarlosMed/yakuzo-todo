@@ -2,20 +2,21 @@ import 'materialize-css/dist/css/materialize.min.css';
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
-import AddTodo from './components/AddTodo/AddTodo';
-import TodoList from './components/Home/Home';
-
-
+import AuthHome from './components/ProtectedHome/AuthHome';
+import PublicHome from './components/PublicHome/PublicHome';
+import { AuthContext } from './utils/AuthContext';
 
 class App extends Component {
   render() {
     return (
-      <Router>
-        <main className="App">
-          <Route exact path="/" component={TodoList} />
-          <Route path="/add" component={AddTodo} />
-        </main>
-      </Router>
+      <AuthContext>
+        <Router>
+          <main className="App">
+            <Route exact path="/login" component={PublicHome} />
+            <Route exact path="/" component={AuthHome} />
+          </main>
+        </Router>
+      </AuthContext>
     );
   }
 }

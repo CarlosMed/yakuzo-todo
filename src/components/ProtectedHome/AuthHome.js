@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import { db } from '../../helpers/firebase';
+import { Redirect } from 'react-router-dom';
+import { AuthConsumer } from '../../utils/AuthContext';
+import { db } from '../../utils/firebase';
 import Footer from './Footer/Footer';
 import Header from './Header/Header';
 import './Home.css';
 import TodoList from './TodoList/TodoList';
+
 
 class AuthHome extends Component {
   constructor(props) {
@@ -101,6 +104,11 @@ class AuthHome extends Component {
 
   render() {
     const { todos, message } = this.state;
+
+    if ( !this.context.state.user ) {
+      return <Redirect to='/login' />
+    }
+
     return (
       <section>
         <Header amount={todos.length} />
@@ -111,4 +119,6 @@ class AuthHome extends Component {
   }
 }
 
+
+AuthHome.contextType = AuthConsumer;
 export default AuthHome;

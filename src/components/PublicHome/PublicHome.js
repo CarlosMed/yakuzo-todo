@@ -1,5 +1,6 @@
 import M from 'materialize-css';
 import React, { Component } from 'react';
+import { AuthConsumer } from '../../utils/AuthContext';
 import { auth, googleProvider } from '../../utils/firebase';
 import './PublicHome.css';
 import UsernameLogin from './UsernameLogin';
@@ -12,29 +13,13 @@ export default class PublicHome extends Component {
     this.state = {
       email: '',
       password: '',
-      user: null,
     };
 
     this.loginModal = React.createRef();
   }
+
   // initialize modal
   componentDidMount = () => M.Modal.init(this.loginModal.current);
-
-  // user Handler
-  userHandler = user => {
-    this.setState(
-      {
-        user,
-      },
-      () => {
-        console.log(user);
-        M.toast({
-          html: 'Successfully SignedUp',
-          classes: 'green lighten-1 white-text',
-        });
-      }
-    );
-  };
 
   // error handler
   errHandler = err =>
@@ -53,17 +38,13 @@ export default class PublicHome extends Component {
     if (type === 'signup') {
       return auth
         .createUserWithEmailAndPassword(email, password)
-        .then(({ user }) => {
-          this.userHandler(user);
-        })
+        .then(({ user }) => this.context.userHandler(user))
         .catch(err => this.errHandler(err));
     }
 
     return auth
       .signInWithEmailAndPassword(email, password)
-      .then(({ user }) => {
-        this.userHandler(user);
-      })
+      .then(({ user }) => this.context.userHandler(user))
       .catch(err => this.errHandler(err));
   };
 
@@ -71,7 +52,7 @@ export default class PublicHome extends Component {
   handleGoogleAuth = () =>
     auth
       .signInWithPopup(googleProvider)
-      .then(({ user }) => this.userHandler(user))
+      .then(({ user }) => this.context.userHandler(user))
       .catch(err => this.errHandler(err));
 
   render() {
@@ -79,6 +60,11 @@ export default class PublicHome extends Component {
 
     return (
       <div className="container auth valign-wrapper">
+        <div className="user row center-align auth-wrapper s12 m12">
+          <h2>
+            {this.context.state.user !== null && this.context.state.user.email}
+          </h2>
+        </div>
         <div className="row center-align auth-wrapper s12 m12">
           <div className="col s12 m6">
             <div className="card-panel grey lighten-5">
@@ -125,3 +111,5 @@ export default class PublicHome extends Component {
     );
   }
 }
+
+PublicHome.contextType = AuthConsumer;
