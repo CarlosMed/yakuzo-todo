@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 export class UsernameLogin extends Component {
-  render({ email, password, setRef, handleSubmit, handleChange } = this.props) {
+  render({ loginEmail, password, setRef, handleSubmit, handleChange } = this.props) {
     return (
       <div id="loginModal" className="modal" ref={setRef}>
         <form className="col s12" onSubmit={e => handleSubmit(e, 'login')}>
@@ -13,7 +13,7 @@ export class UsernameLogin extends Component {
                   type="email"
                   name="email"
                   className="validate"
-                  value={email}
+                  value={loginEmail}
                   onChange={e => handleChange(e)}
                 />
                 <label htmlFor="email">Email</label>

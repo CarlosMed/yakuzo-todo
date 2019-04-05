@@ -1,35 +1,25 @@
 import M from 'materialize-css';
-import React, { Component, createContext } from 'react';
-import { Redirect } from 'react-router-dom';
+import React, { createContext, useState } from 'react';
 
 
-const { Provider, Consumer } = createContext();
-class AuthContext extends Component {
-  state = {
-    user: null,
-  };
+const UserContext = createContext();
+const AuthContext = props => {
+  const [user, setUser] = useState(null);
 
   // user Handler
-  userHandler = user =>
-    this.setState({ user }, () =>
-      M.toast({
-        html: 'Successfully Signed Up',
-        classes: 'green lighten-1 white-text',
-        completeCallback: () => <Redirect to="/" />,
-      })
-    );
+  const userHandler = user =>
+    M.toast({
+      html: 'Successfully Signed Up',
+      classes: 'green lighten-1 white-text',
+      completeCallback: () => setUser(user),
+    });
 
-  render() {
-    console.log('object');
-    return (
-      <Provider value={{ state: this.state, userHandler: this.userHandler }}>
-        {this.props.children}
-      </Provider>
-    );
-  }
-}
+  return (
+    <UserContext.Provider value={{ user: user, userHandler: userHandler }}>
+      {props.children}
+    </UserContext.Provider>
+  );
+};
 
-const AuthConsumer = Consumer;
-
-export { AuthContext, AuthConsumer };
+export { AuthContext, UserContext };
 

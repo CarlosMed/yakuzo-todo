@@ -1,6 +1,6 @@
 import React from 'react';
 
-const UsernameSignup = ({ email, password, handleSubmit, handleChange }) => (
+const UsernameSignup = ({ signupEmail, password, handleSubmit, handleChange }) => (
   <form className="col s12 signup" onSubmit={e => handleSubmit(e, 'signup')}>
     <div className="row">
       <div className="input-field col s12">
@@ -9,7 +9,7 @@ const UsernameSignup = ({ email, password, handleSubmit, handleChange }) => (
           type="email"
           name="email"
           className="validate"
-          value={email}
+          value={signupEmail}
           onChange={e => handleChange(e)}
         />
         <label htmlFor="email">Email</label>

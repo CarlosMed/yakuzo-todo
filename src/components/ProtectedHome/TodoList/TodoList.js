@@ -1,9 +1,7 @@
 import React from 'react';
 import { Todo } from './Todo';
 
-const TodoList = props => {
-  const { todos, message } = props;
-
+const TodoList = ({ todos, message })  => {
   return (
     <div className="container">
       <h2>
@@ -13,7 +11,9 @@ const TodoList = props => {
         <p className="grey-text">{message}</p>
       ) : (
         <ul>
-          {todos.map(todo => <Todo todo={todo} key={todo.id} />)}
+          {todos.map(todo => (
+            <Todo todo={todo} key={todo.id} />
+          ))}
         </ul>
       )}
     </div>

@@ -2,8 +2,7 @@ import React from 'react';
 import './Header.css';
 import { Circles } from './svg';
 
-const Header = (props) => {
-  const { amount } = props;
+const Header = ({amount}) => {
   return (
     <header>
       <Circles />
